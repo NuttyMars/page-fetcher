@@ -10,18 +10,18 @@ const dataRequest = function(URL, localPath) {
   request(URL, (error, response, body) => {
   
     //if an error happens during the request
-    if(error) {
+    if (error) {
       console.log(`Failed to download. Error details: ${error}`);
       return;
-    };
+    }
   
     //if there's not an error but the status code is not ok
     const isStatusCodeNotOK = response.statusCode !== 200;
   
     if (isStatusCodeNotOK) {
-      console.log(`Something went wrong! Status message: ${response.statusMessage}\nTerminating connection...`)
+      console.log(`Something went wrong! Status message: ${response.statusMessage}\nTerminating connection...`);
       return;
-    };
+    }
   
     //this overwrites the local file
     fs.writeFile(localPath, body, function(err) {
@@ -36,12 +36,12 @@ const dataRequest = function(URL, localPath) {
     });
   
   });
-}
+};
 
 //if the URL or local path do not get passed in the terminal
 if (!URL || !localPath) {
   console.log('Please use the following format for your request: node fetcher.js <url> <localpath>');
 
-} else { 
+} else {
   dataRequest(URL, localPath);
-};
+}
